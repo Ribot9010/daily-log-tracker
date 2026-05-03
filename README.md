@@ -1,5 +1,7 @@
 # Daily Log Tracker
 
+**Version:** v2.2 — added Intermittent fasting Y/N (2026-05-03)
+
 A personal habit-survey app. One tap on the Pixel home screen, fill in carbs / exercise / sleep / alcohol / intermittent fasting for the day, and an all-day event lands on Google Calendar. A small Python script later turns the calendar into stats.
 
 Built 2026-05-03 as my first end-to-end project with Claude Code. Documents everything we put in place and the things we deliberately did not.
@@ -40,7 +42,6 @@ Built 2026-05-03 as my first end-to-end project with Claude Code. Documents ever
 | `apps-script.gs` | Google Apps Script backend (paste into script.google.com). |
 | `analytics.py` | Reads events, prints summary stats. |
 | `run_analytics.bat` | Double-click to run analytics on Windows. |
-| `seed_test_data.py` | One-shot helper that POSTs 10 plausible test entries. |
 
 ## How to use
 
