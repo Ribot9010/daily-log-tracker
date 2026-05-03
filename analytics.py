@@ -46,7 +46,7 @@ def fetch_events() -> list[dict]:
 
 def parse_description(desc: str) -> dict:
     """Extract structured fields from the event description string."""
-    out = {"carbs": None, "exercise": [], "sleep": False, "alcohol": False}
+    out = {"carbs": None, "exercise": [], "sleep": False, "alcohol": False, "fasting": False}
     for line in desc.splitlines():
         if line.startswith("Carbs:"):
             out["carbs"] = line.split(":", 1)[1].strip().lower()
@@ -58,6 +58,8 @@ def parse_description(desc: str) -> dict:
             out["sleep"] = line.rstrip().endswith("Y")
         elif line.startswith("Alcohol"):
             out["alcohol"] = line.rstrip().endswith("Y")
+        elif line.startswith("Intermittent fasting"):
+            out["fasting"] = line.rstrip().endswith("Y")
     return out
 
 
@@ -70,6 +72,7 @@ def build_dataframe(events: list[dict]) -> pd.DataFrame:
             "carbs": parsed["carbs"],
             "sleep_ok": parsed["sleep"],
             "alcohol": parsed["alcohol"],
+            "fasting": parsed["fasting"],
         }
         for ex in EXERCISE_TYPES:
             row[ex] = ex in parsed["exercise"]
@@ -126,6 +129,11 @@ def summarise(df: pd.DataFrame) -> None:
     alcohol_count = int(df["alcohol"].sum())
     print(f"Alcohol days: {alcohol_count}/{n}  ({alcohol_count / n:.0%})")
     print(f"Current dry streak: {current_streak(~df['alcohol'])} days")
+    print()
+
+    fasting_count = int(df["fasting"].sum())
+    print(f"Intermittent fasting days: {fasting_count}/{n}  ({fasting_count / n:.0%})")
+    print(f"Current fasting streak: {current_streak(df['fasting'])} days")
 
 
 def current_streak(series: pd.Series) -> int:

@@ -1,6 +1,6 @@
 # Daily Log Tracker
 
-A personal habit-survey app. One tap on the Pixel home screen, fill in carbs / exercise / sleep / alcohol for the day, and an all-day event lands on Google Calendar. A small Python script later turns the calendar into stats.
+A personal habit-survey app. One tap on the Pixel home screen, fill in carbs / exercise / sleep / alcohol / intermittent fasting for the day, and an all-day event lands on Google Calendar. A small Python script later turns the calendar into stats.
 
 Built 2026-05-03 as my first end-to-end project with Claude Code. Documents everything we put in place and the things we deliberately did not.
 
@@ -30,7 +30,7 @@ Built 2026-05-03 as my first end-to-end project with Claude Code. Documents ever
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The form (date + carbs + exercise + sleep + alcohol). |
+| `index.html` | The form (date + carbs + exercise + sleep + alcohol + fasting). |
 | `app.js` | Submit handler, registers the service worker. |
 | `config.js` | Holds the Apps Script web app URL. |
 | `manifest.json` | PWA manifest — name, icons, theme. |
@@ -69,7 +69,7 @@ Working end-to-end as of 2026-05-03:
 - [x] Google Calendar storage with overwrite-on-resubmit
 - [x] Real PWA install on Pixel 7
 - [x] Apps Script JSON read endpoint
-- [x] Python analytics with carbs / exercise / sleep / alcohol
+- [x] Python analytics with carbs / exercise / sleep / alcohol / fasting
 - [x] Missed-days metric (calendar window vs. logged days)
 - [x] One-click analytics via `.bat` shortcut
 

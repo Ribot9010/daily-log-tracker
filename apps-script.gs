@@ -80,6 +80,7 @@ function formatTitle(data) {
   if (data.exercise && data.exercise.length) parts.push('ex:' + data.exercise.join('+'));
   parts.push(data.sleep ? 'sleep:Y' : 'sleep:N');
   parts.push(data.alcohol ? 'alc:Y' : 'alc:N');
+  parts.push(data.fasting ? 'fast:Y' : 'fast:N');
   return 'Daily log — ' + parts.join(' | ');
 }
 
@@ -89,6 +90,7 @@ function formatDescription(data) {
     'Exercise: ' + ((data.exercise && data.exercise.length) ? data.exercise.join(', ') : 'none'),
     'Sleep 7.5h uninterrupted: ' + (data.sleep ? 'Y' : 'N'),
     'Alcohol: ' + (data.alcohol ? 'Y' : 'N'),
+    'Intermittent fasting: ' + (data.fasting ? 'Y' : 'N'),
     '',
     'Logged at: ' + new Date().toISOString()
   ];
