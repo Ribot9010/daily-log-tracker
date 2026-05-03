@@ -3,10 +3,40 @@
 // then Deploy → New deployment → Web app, "Execute as: Me", "Who has access: Anyone".
 // Copy the resulting Web App URL into config.js on the front-end.
 
-function doGet() {
+function doGet(e) {
+  const action = (e && e.parameter && e.parameter.action) || '';
+  if (action === 'list') {
+    return jsonResponse({ ok: true, events: listDailyLogs() });
+  }
   return ContentService
-    .createTextOutput('Daily Log Tracker endpoint is live. POST JSON to log a day.')
+    .createTextOutput('Daily Log Tracker endpoint is live. POST JSON to log a day, or GET ?action=list to read.')
     .setMimeType(ContentService.MimeType.TEXT);
+}
+
+function listDailyLogs() {
+  // Pull every "Daily log" all-day event from the user's default calendar
+  // over a wide window. Adjust the window if you ever want a longer history.
+  const cal = CalendarApp.getDefaultCalendar();
+  const start = new Date();
+  start.setFullYear(start.getFullYear() - 2);
+  const end = new Date();
+  end.setDate(end.getDate() + 1);
+
+  const events = cal.getEvents(start, end)
+    .filter(ev => ev.getTitle().startsWith('Daily log'));
+
+  return events.map(ev => {
+    const date = ev.getAllDayStartDate();
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return {
+      date: yyyy + '-' + mm + '-' + dd,
+      title: ev.getTitle(),
+      description: ev.getDescription() || '',
+      eventId: ev.getId()
+    };
+  });
 }
 
 function doPost(e) {
