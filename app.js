@@ -36,6 +36,7 @@
       carbs: fd.get('carbs'),
       exercise: fd.getAll('exercise'),
       sleep: fd.get('sleep') === 'on',
+      alcohol: fd.get('alcohol') === 'on',
     };
 
     btn.disabled = true;

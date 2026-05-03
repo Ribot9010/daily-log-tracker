@@ -78,7 +78,8 @@ function formatTitle(data) {
   const parts = [];
   parts.push('carbs:' + data.carbs);
   if (data.exercise && data.exercise.length) parts.push('ex:' + data.exercise.join('+'));
-  if (data.sleep) parts.push('sleep:Y'); else parts.push('sleep:N');
+  parts.push(data.sleep ? 'sleep:Y' : 'sleep:N');
+  parts.push(data.alcohol ? 'alc:Y' : 'alc:N');
   return 'Daily log — ' + parts.join(' | ');
 }
 
@@ -87,6 +88,7 @@ function formatDescription(data) {
     'Carbs: ' + data.carbs,
     'Exercise: ' + ((data.exercise && data.exercise.length) ? data.exercise.join(', ') : 'none'),
     'Sleep 7.5h uninterrupted: ' + (data.sleep ? 'Y' : 'N'),
+    'Alcohol: ' + (data.alcohol ? 'Y' : 'N'),
     '',
     'Logged at: ' + new Date().toISOString()
   ];

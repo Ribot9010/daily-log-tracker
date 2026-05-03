@@ -32,16 +32,16 @@ URL = match.group(1)
 # 10 days of made-up but realistic-looking entries.
 # Mix: leans low-carb, cardio appears most days, sleep is hit-or-miss.
 SEED = [
-    {"date": "2026-04-23", "carbs": "medium", "exercise": ["Cardio"],                              "sleep": True},
-    {"date": "2026-04-24", "carbs": "low",    "exercise": ["Resistance"],                         "sleep": True},
-    {"date": "2026-04-25", "carbs": "high",   "exercise": [],                                     "sleep": False},
-    {"date": "2026-04-26", "carbs": "low",    "exercise": ["Animal Moves", "Cardio"],             "sleep": True},
-    {"date": "2026-04-27", "carbs": "medium", "exercise": ["Cardio", "Resistance"],               "sleep": False},
-    {"date": "2026-04-28", "carbs": "low",    "exercise": ["Cardio"],                             "sleep": True},
-    {"date": "2026-04-29", "carbs": "low",    "exercise": ["Animal Moves"],                       "sleep": True},
-    {"date": "2026-04-30", "carbs": "medium", "exercise": [],                                     "sleep": True},
-    {"date": "2026-05-01", "carbs": "high",   "exercise": ["Cardio", "Resistance"],               "sleep": False},
-    {"date": "2026-05-02", "carbs": "low",    "exercise": ["Cardio", "Animal Moves", "Resistance"], "sleep": True},
+    {"date": "2026-04-23", "carbs": "medium", "exercise": ["Cardio"],                              "sleep": True,  "alcohol": False},
+    {"date": "2026-04-24", "carbs": "low",    "exercise": ["Resistance"],                         "sleep": True,  "alcohol": False},
+    {"date": "2026-04-25", "carbs": "high",   "exercise": [],                                     "sleep": False, "alcohol": True},
+    {"date": "2026-04-26", "carbs": "low",    "exercise": ["Animal Moves", "Cardio"],             "sleep": True,  "alcohol": False},
+    {"date": "2026-04-27", "carbs": "medium", "exercise": ["Cardio", "Resistance"],               "sleep": False, "alcohol": True},
+    {"date": "2026-04-28", "carbs": "low",    "exercise": ["Cardio"],                             "sleep": True,  "alcohol": False},
+    {"date": "2026-04-29", "carbs": "low",    "exercise": ["Animal Moves"],                       "sleep": True,  "alcohol": False},
+    {"date": "2026-04-30", "carbs": "medium", "exercise": [],                                     "sleep": True,  "alcohol": False},
+    {"date": "2026-05-01", "carbs": "high",   "exercise": ["Cardio", "Resistance"],               "sleep": False, "alcohol": True},
+    {"date": "2026-05-02", "carbs": "low",    "exercise": ["Cardio", "Animal Moves", "Resistance"], "sleep": True,  "alcohol": False},
 ]
 
 
