@@ -14,6 +14,12 @@ from pathlib import Path
 import pandas as pd
 import requests
 
+# Windows consoles default to cp1252 which can't render em-dashes / arrows.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, OSError):
+    pass
+
 
 HERE = Path(__file__).parent
 APPS_SCRIPT_URL = (HERE / "config.js").read_text(encoding="utf-8")

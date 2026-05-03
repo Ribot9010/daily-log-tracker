@@ -1,0 +1,6 @@
+# Generated analytics output — your actual log data, don't publish.
+daily_log.csv
+
+# Python build artefacts
+__pycache__/
+*.pyc
