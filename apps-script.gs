@@ -100,3 +100,24 @@ function jsonResponse(obj) {
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+// One-shot cleanup helper. Run from the Apps Script editor (no deploy needed)
+// to delete the seeded test entries for 2026-04-23 through 2026-05-02.
+// Adjust the dates in the two `new Date(...)` lines if you ever need to nuke
+// a different range. Today's real entry on 2026-05-03 is preserved because
+// `end` is exclusive of midnight on May 3.
+function cleanupTestData() {
+  const cal = CalendarApp.getDefaultCalendar();
+  const start = new Date(2026, 3, 23); // 2026-04-23 (month is 0-indexed)
+  const end   = new Date(2026, 4, 3);  // 2026-05-03 exclusive
+
+  const events = cal.getEvents(start, end)
+    .filter(ev => ev.getTitle().startsWith('Daily log'));
+
+  events.forEach(ev => {
+    Logger.log('Deleting: ' + ev.getTitle());
+    ev.deleteEvent();
+  });
+
+  Logger.log('Deleted ' + events.length + ' events.');
+}
