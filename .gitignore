@@ -4,3 +4,6 @@ daily_log.csv
 # Python build artefacts
 __pycache__/
 *.pyc
+
+# Windows shortcuts (machine-local).
+*.lnk
