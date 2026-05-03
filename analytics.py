@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -85,8 +86,22 @@ def summarise(df: pd.DataFrame) -> None:
         return
 
     n = len(df)
-    print(f"Daily Log summary — {n} day{'s' if n != 1 else ''} logged")
-    print(f"  range: {df['date'].min().date()} → {df['date'].max().date()}")
+    first_log = df["date"].min().date()
+    today = date.today()
+    end_date = max(today, df["date"].max().date())
+    total_days = (end_date - first_log).days + 1
+    missing = total_days - n
+
+    plural = "s" if n != 1 else ""
+    print(f"Daily Log summary — {n} day{plural} logged")
+    print(f"  tracking since: {first_log}  (today: {today})")
+    print(
+        f"  calendar days: {total_days}  |  "
+        f"logged: {n} ({n / total_days:.0%})  |  "
+        f"missed: {missing} ({missing / total_days:.0%})"
+    )
+    print()
+    print(f"Stats below cover the {n} logged day{plural} only.")
     print()
 
     print("Carbs distribution:")
